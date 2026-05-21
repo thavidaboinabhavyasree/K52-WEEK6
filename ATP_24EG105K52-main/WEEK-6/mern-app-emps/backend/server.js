@@ -10,13 +10,14 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "https://mern-app-emps.vercel.app",
-      "https://mern-app-emps-k1ideeqbc-bhavya123s-projects.vercel.app",
-      "https://mern-app-emps-qq2v17jea-bhavya123s-projects.vercel.app",
-    ],
+  origin: [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://mern-app-emps.vercel.app",
+  "https://mern-app-emps-k1ideeqbc-bhavya123s-projects.vercel.app",
+  "https://mern-app-emps-qq2v17jea-bhavya123s-projects.vercel.app",
+  "https://k52-week-6.vercel.app"
+],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
