@@ -8,20 +8,23 @@ dotenv.config();
 
 const app = express();
 
-// CORS FIX
 app.use(
   cors({
-    origin: true,
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "https://k52-week-6.vercel.app"
+    ],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 
 app.use(express.json());
 
-// ROUTES
 app.use("/emp-api", empRoute);
 
-// TEST ROUTES
 app.get("/", (req, res) => {
   res.send("Backend working");
 });
@@ -30,9 +33,9 @@ app.get("/emp-api/test", (req, res) => {
   res.json({ message: "API working" });
 });
 
-// DATABASE CONNECTION
 const connectDB = async () => {
   try {
+
     await mongoose.connect(process.env.MONGO_URI);
 
     console.log("DB connected");
@@ -50,7 +53,6 @@ const connectDB = async () => {
 
 connectDB();
 
-// ERROR HANDLER
 app.use((err, req, res, next) => {
   console.log("err in middleware:", err.message);
 
