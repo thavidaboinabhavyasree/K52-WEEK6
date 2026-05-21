@@ -25,6 +25,14 @@ app.use(express.json());
 
 app.use("/emp-api", empRoute);
 
+app.get("/", (req, res) => {
+  res.send("Backend working");
+});
+
+app.get("/emp-api/test", (req, res) => {
+  res.json({ message: "API working" });
+});
+
 const connectDB = async () => {
   try {
 
