@@ -8,23 +8,18 @@ dotenv.config();
 
 const app = express();
 
-app.use(
-  cors({
-    origin: [
-      "http://localhost:5173",
-      "http://localhost:5174",
-      "https://k52-week-6.vercel.app"
-    ],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+
+// VERY IMPORTANT
+app.use(cors());
 
 app.use(express.json());
 
+
+// ROUTES
 app.use("/emp-api", empRoute);
 
+
+// TEST ROUTES
 app.get("/", (req, res) => {
   res.send("Backend working");
 });
@@ -33,6 +28,8 @@ app.get("/emp-api/test", (req, res) => {
   res.json({ message: "API working" });
 });
 
+
+// DATABASE CONNECTION
 const connectDB = async () => {
   try {
 
@@ -53,11 +50,15 @@ const connectDB = async () => {
 
 connectDB();
 
+
+// ERROR HANDLER
 app.use((err, req, res, next) => {
+
   console.log("err in middleware:", err.message);
 
   res.status(err.status || 500).json({
     message: "error",
     reason: err.message,
   });
+
 });
