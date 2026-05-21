@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const API_BASE_URL = "https://mern-app-emps-backend-8tsc.onrender.com";
+const API_BASE_URL = "https://k52-week6.onrender.com/emp-api";
 
 function CreateEmp() {
   const [loading, setLoading] = useState(false);
